@@ -1,7 +1,6 @@
 const mongoose = require('mongoose')
 let videoSchema = new mongoose.Schema(
   {
-    //  user _id
     author: {type: mongoose.Types.ObjectId, ref: 'user', required: true},
     description: {type: String, required: true, maxlength: 30},
     tagList: [{type: String}],

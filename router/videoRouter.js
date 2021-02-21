@@ -34,7 +34,6 @@ async function findPageVideos (limit, offset) {
   })
 }
 
-
 // //查询所有视频
 // router.get('/list', async (req, res) => {
 //   let videos = await findAllVideos()
@@ -56,16 +55,6 @@ router.get('/list', async (req, res) => {
     res.status(500).json({error: '输入有误'})
   }
 })
-
-// router.get('/page', async (req, res) => {
-//   try{
-//     let {page} = req.query
-//     let videos = await findPageVideos(page)
-//     res.send(videos)
-//   }catch{
-//     res.status(500).json({error: '页数不对'})
-//   }
-// })
 
 //添加视频
 router.post('/add', async (req, res) => {

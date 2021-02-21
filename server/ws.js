@@ -2,6 +2,8 @@ const WebSocket = require('ws')
 const qs = require('qs')
 const Comment = require('../db/moudle/commentModel')
 
+// 搭建实时评论websocket服务
+
 const ws = new WebSocket.Server({port: 8080}, () => {
   console.log('ws服务器已开启 port 8080')
 })

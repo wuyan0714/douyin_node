@@ -1,4 +1,7 @@
 const NodeMediaServer = require('node-media-server');
+
+// 搭建直播流服务器
+
 const config = {
   rtmp: {
     port: 1935,

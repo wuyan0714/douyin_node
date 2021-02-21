@@ -70,8 +70,6 @@ router.post('/add', async (req, res) => {
   }
 })
 
-
-
 // 删除直播
 router.post('/delete', async (req, res) => {
   let {_id} = req.body

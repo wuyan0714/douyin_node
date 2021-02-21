@@ -1,6 +1,8 @@
 const WebSocket = require('ws')
 const qs = require('qs')
 
+// 搭建点赞动效websocket服务
+
 const ws = new WebSocket.Server({port: 8081}, () => {
   console.log('ws服务器已开启 port 8081')
 })
