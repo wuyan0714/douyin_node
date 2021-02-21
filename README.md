@@ -3,8 +3,8 @@
 express
 mongoose
 ws
-##node-media-server
-项目初始化：
-##npm install
-项目运行：
+node-media-server
+##  项目初始化：
+npm install
+## 项目运行：
 node ./app.js
