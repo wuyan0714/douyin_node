@@ -1,0 +1,22 @@
+{
+  "name": "douyin_node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.0.0-alpha.8",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.29.1",
+    "mongoose": "^5.11.15",
+    "node-media-server": "^2.2.4",
+    "qs": "^6.9.6",
+    "winston": "^3.3.3",
+    "ws": "^7.4.3"
+  }
+}
