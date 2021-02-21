@@ -115,7 +115,7 @@ router.post('/like', async (req, res) => {
 router.post('/update', async (req, res) => {
   try{
     let {_id, description, tagList, song, like, comment, share} = req.body
-    await Video.findByIdAndUpdate(_id, {description, tagList, song, like, comment, share, updatedAt: new Date()})
+    await Video.findByIdAndUpdate(_id, {description, tagList, song, like, comment, share, updatedAt: moment(new Date()).format('YYYY-MM-DD HH:mm:ss')})
     res.end()
   }catch{
     res.status(422).json({error: '信息填写错误'})

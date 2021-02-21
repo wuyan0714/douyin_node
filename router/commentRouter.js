@@ -14,12 +14,12 @@ router.get('/list', async (req, res) => {
   res.json(comments)
 })
 
-//添加评论
+///添加评论
 router.post('/add', async (req, res) => {
   try{
     let {live, msg} = req.body
-    let comment = await Comment.find({live})[0]
-    if(!comment){
+    let comments = await Comment.find({live})
+    if(comments.length===0){
       let commentList = [msg]
       let data = await Comment.insertMany({
           live: live,
@@ -27,8 +27,8 @@ router.post('/add', async (req, res) => {
       })
       res.end()
     }else{
-      comment.commentList.push(msg)
-      comment.save()
+      comments[0].commentList.push(msg)
+      comments[0].save()
       res.end()
     }
   }catch{

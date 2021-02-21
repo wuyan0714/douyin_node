@@ -5,6 +5,9 @@ let liveSchema = new mongoose.Schema({
   // imgUrl: {type: String, default: '/res/img/default.jpg'},
   publishUrl: String,
   playUrl: String,
+  createdAt: {type: String},
+  updatedAt: {type: String},
+  living: {type: Boolean, default: false}
 })
 let Live = mongoose.model('live', liveSchema)
 module.exports = Live
