@@ -1,4 +1,4 @@
-# douyin_node
+# tiktok-react-backend
 #### 项目所使用组件和框架：
 express
 
