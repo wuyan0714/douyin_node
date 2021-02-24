@@ -50,17 +50,10 @@ function remove (client) {
 //添加评论到数据库中
 const addcomment = async (room, msg) => {
   try{
-    let comments = await Comment.find({live: room})
-    if(comments.length===0){
-      let commentList = [msg]
-      let data = await Comment.insertMany({
-        live: room,
-        commentList: commentList
-      })
-    }else{
-      comments[0].commentList.push(msg)
-      comments[0].save()
-      }
+    let data = await Comment.insertMany({
+      live: room,
+      content: msg
+    })
     }catch{
       console.log('live_id不正确')
     }

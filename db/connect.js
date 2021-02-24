@@ -9,6 +9,3 @@ let db = mongoose.connection
 db.on('connected', function(){
     console.log('mongodb启动成功')
     })
-// db.on('error', console.error.bind(console, 'connection error:'))
-// db.once('open', () => {
-// })

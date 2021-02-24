@@ -4,6 +4,7 @@ const router = express.Router()
 const jsonRes = require('../utils/jsonRes')
 const Video = require('../db/moudle/videoModel')
 const User = require('../db/moudle/userModel')
+const auth = require('../middleware/auth')
 const moment = require('moment')
 
 async function findAllVideos () {
@@ -34,12 +35,6 @@ async function findPageVideos (limit, offset) {
   })
 }
 
-// //查询所有视频
-// router.get('/list', async (req, res) => {
-//   let videos = await findAllVideos()
-//   res.status(200).json(videos)
-// })
-
 //查询某页视频
 router.get('/list', async (req, res) => {
   try{
@@ -57,7 +52,7 @@ router.get('/list', async (req, res) => {
 })
 
 //添加视频
-router.post('/add', async (req, res) => {
+router.post('/add', auth, async (req, res) => {
   let {author, description, tagList, imgUrl, videoUrl, song} = req.body
   if (author && description && tagList && videoUrl &&song) {
     let data = await Video.insertMany({
@@ -77,16 +72,14 @@ router.post('/add', async (req, res) => {
 })
 
 // 删除视频
-router.post('/delete', async (req, res) => {
+router.post('/delete', auth, async (req, res) => {
   let {_id} = req.body
-  // if (!_id) return res.json(jsonRes(-1, '无id'))
   if (!_id) return res.status(404).json({error: "无_id"})
-  //删除视频
   await Video.deleteOne({_id})
   res.end()
 })
 
-//获取视频 get
+//获取视频
 router.get('/get', async (req, res) => {
   let {_id} = req.query
   if (!_id) return res.status(404).json({error: "无_id"})
@@ -106,13 +99,12 @@ router.post('/like', async (req, res) => {
   let {_id} = req.body
   let video = await Video.findById(_id)
   video.like++
-  // res.json({"ok": true})
   await video.save()
   res.end()
 })
 
-//修改
-router.post('/update', async (req, res) => {
+//修改视频信息
+router.post('/update', auth, async (req, res) => {
   try{
     let {_id, description, tagList, song, like, comment, share} = req.body
     await Video.findByIdAndUpdate(_id, {description, tagList, song, like, comment, share, updatedAt: moment(new Date()).format('YYYY-MM-DD HH:mm:ss')})

@@ -1,6 +1,5 @@
 'use strict'
 const express = require('express')
-// const session = require('express-session')
 const path = require('path')
 const cors = require('cors')
 const logger = require('./utils/logger')
@@ -28,7 +27,6 @@ app.get('/test',async(req,res) =>{
 })
 
 app.use('/api/user', require('./router/userRouter'))
-// app.use('/upload', require('./router/fileRouter'))
 app.use('/api/video', require('./router/videoRouter'))
 app.use('/api/comment', require('./router/commentRouter'))
 app.use('/api/live', require('./router/liveRouter'))

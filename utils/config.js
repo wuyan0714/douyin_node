@@ -5,7 +5,7 @@ const config = {
   // 默认昵称
   DEFAULT_NICK: '无名小子',
   //数据库存入用户默认签名
-  DEFAULT_SIGN: '整活儿第一名',
+  DEFAULT_SIGN: '加油每一天',
   //数据库存入用户默认头像
   DEFAULT_HEAD: '/res/avatar/default.png',
   //  hmac加密秘钥

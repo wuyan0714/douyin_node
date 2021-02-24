@@ -5,6 +5,7 @@ const jsonRes = require('../utils/jsonRes')
 const Live = require('../db/moudle/liveModel')
 const User = require('../db/moudle/userModel')
 const moment = require('moment')
+const auth = require('../middleware/auth')
 const {BASE_URL,PUBLISH_URL,PLAY_URL,DEFAULT_NICK, DEFAULT_SIGN, DEFAULT_HEAD} = require('../utils/config')
 
 async function findAllTrueLives () {
@@ -63,13 +64,7 @@ async function findPageLives (limit, offset) {
   })
 }
 
-//查询所有直播
-// router.get('/list', async (req, res) => {
-//   let lives = await findAllLives()
-//   res.status(200).json(lives)
-// })
-
-//查询某页直播
+//查询开播的直播
 router.get('/list', async (req, res) => {
   try{
     let {limit, offset} = req.query
@@ -85,6 +80,7 @@ router.get('/list', async (req, res) => {
   }
 })
 
+//查询所有的直播
 router.get('/allList', async (req, res) => {
   try{
     let {limit, offset} = req.query
@@ -101,7 +97,7 @@ router.get('/allList', async (req, res) => {
 })
 
 //添加直播
-router.post('/add', async (req, res) => {
+router.post('/add', auth, async (req, res) => {
   try{
     let {author} = req.body
     if (!author) return res.status(404).json({error: "无author_id"})
@@ -128,7 +124,7 @@ router.post('/add', async (req, res) => {
 })
 
 // 删除直播
-router.post('/delete', async (req, res) => {
+router.post('/delete', auth, async (req, res) => {
   let {_id} = req.body
   if (!_id) return res.status(404).json({error: "无_id"})
   await Live.deleteOne({_id})
@@ -136,7 +132,7 @@ router.post('/delete', async (req, res) => {
   res.end()
 })
 
-//获取直播 get
+//获取直播
 router.get('/get', async (req, res) => {
   let {_id} = req.query
   if (!_id) return res.status(404).json({error: "无_id"})
@@ -152,7 +148,7 @@ router.get('/get', async (req, res) => {
 })
 
 //修改直播
-router.post('/update', async (req, res) => {
+router.post('/update', auth, async (req, res) => {
   try{
     let {_id, description, living, publishUrl,playUrl} = req.body
     if(publishUrl){
